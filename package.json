@@ -1,0 +1,36 @@
+{
+  "name": "snip_tuck",
+  "version": "1.0.0",
+  "description": "Code snippet manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/djwirz/sniptuck.git"
+  },
+  "keywords": [
+    "electron",
+    "react",
+    "node"
+  ],
+  "author": "Daniel J. Wirz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/djwirz/sniptuck/issues"
+  },
+  "homepage": "https://github.com/djwirz/sniptuck#readme",
+  "dependencies": {
+    "electron-prebuilt": "^1.4.0",
+    "react": "^15.3.2"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "electron-packager": "^8.0.0",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.1"
+  }
+}
