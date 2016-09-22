@@ -1,14 +1,43 @@
-export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
-export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
+import axios from 'axios';
 
-export function increment() {
+import { browserHistory } from 'react-router';
+
+import * as types from '../constants/ActionTypes';
+
+function requestaddSnippet(snippetInfo) {
   return {
-    type: INCREMENT_COUNTER
+    type: types.ADDSNIPPET_REQUEST,
+    isFetching: true,
+    payload: snippetInfo
   };
 }
 
-export function decrement() {
+function addedSnippet(newSnippet) {
   return {
-    type: DECREMENT_COUNTER
+    type: types.ADDSNIPPET_SUCCESS,
+    isFetching: false,
+    payload: newSnippet
+  };
+}
+
+function snippetAddError(message) {
+  return {
+    type: types.ADDSNIPPET_FAILURE,
+    isFetching: false,
+    payload: message,
+  };
+}
+
+export function addSnippet(snippetInfo) {
+  return function(dispatch) {
+    dispatch(requestaddSnippet(snippetInfo));
+    return axios.post('/api/add/snippet', { "snippet": snippetInfo.snippet })
+      .then(function(response){
+        dispatch(addedSnippet(response.data));
+        browserHistory.push('/home');
+      })
+      .catch(function(response){
+        dispatch(snippetAddError(response));
+      });
   };
 }

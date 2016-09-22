@@ -1,28 +1,52 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addSnippet } from '../actions/addSnippet';
 
 class Snippet extends Component {
-  static propTypes = {
-    increment: PropTypes.func.isRequired,
-    decrement: PropTypes.func.isRequired,
-    snippet: PropTypes.number.isRequired
-  };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+        snippet: '',
+    };
+  }
+
+  onSnippetAdd(event){
+    //As user types in snippet input, update the state
+    //Once state updates the input value is updated to match the state
+    this.setState({ snippet: event.target.value })
+  }
+
+  onFormSubmit(event){
+    //Need to preventDefault, because without it, once the user hits
+    //enter or submit it would send an http request. This being a single
+    //page app, that's not needed and handled in the front-end
+    event.preventDefault();
+    // Call our action, addSnippet, which will send a POST request to the api
+    // see actions/addSnippet.js
+    console.log('Line 30 in Snippet.js this.props: ', this.props)
+    this.props.addSnippet(this.state);
+    //Reset our form fields to empty
+    this.setState({
+        snippet: '',
+    });
+  }
 
   render() {
-    const { increment, decrement, snippet } = this.props;
     return (
       <div>
-        <div>
-          {snippet}
-        </div>
-        <div>
-          <button onClick={increment}>
-            Plus
-          </button>
-          <button onClick={decrement}>
-            Minus
-          </button>
-        </div>
+        <form  onSubmit={this.onFormSubmit.bind(this)}>
+          <input
+              type="text"
+              placeholder="Snippet"
+              value={this.state.snippet}
+              onChange={this.onSnippetAdd.bind(this)}
+              />
+            <button type="submit" >Save Snippet</button>
+        </form>
       </div>
     );
   }

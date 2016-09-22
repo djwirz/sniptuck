@@ -1,12 +1,30 @@
-import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../actions/addSnippet';
+// See actions/addSnippet.js to see where actions are being dispatched
 
-export default function snippet(state = 0, action) {
+//Action Types
+import {
+  ADDSNIPPET_SUCCESS, ADDSNIPPET_REQUEST, ADDSNIPPET_FAILURE
+} from '../actions/addSnippet'
+
+export default function snippet(state = {}, action) {
   switch (action.type) {
-    case INCREMENT_COUNTER:
-      return state + 1;
-    case DECREMENT_COUNTER:
-      return state - 1;
+    case ADDSNIPPET_REQUEST:
+        console.log("ADDSNIPPET_REQUEST")
+        return Object.assign({}, state, {
+            isFetching: true,
+        })
+    case ADDSNIPPET_SUCCESS:
+      console.log("ADDSNIPPET_SUCCESS");
+      return Object.assign({}, state, {
+        isFetching: false,
+        newClass: action.payload,
+      })
+    case ADDSNIPPET_FAILURE:
+      console.log("ADDSNIPPET_FAILURE");
+      return Object.assign({}, state, {
+        isFetching: false,
+        newClass: null,
+      })
     default:
-      return state;
+      return state
   }
-}
+};
