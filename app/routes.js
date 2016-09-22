@@ -5,6 +5,7 @@ import HomePage from './containers/HomePage';
 import SearchPage from './containers/SearchPage';
 import TestingPage from './containers/TestingPage';
 import ManagePage from './containers/ManagePage';
+import SnippetPage from './containers/SnippetPage'
 
 export default (
   <Route path="/" component={App}>
@@ -13,5 +14,6 @@ export default (
     <Route path="/search" component={SearchPage} />
     <Route path="/testing" component={TestingPage} />
     <Route path="/manage" component={ManagePage} />
+    <Route path="/snippet" component={SnippetPage} />
   </Route>
 );

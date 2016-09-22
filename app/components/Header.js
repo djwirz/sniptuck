@@ -20,6 +20,9 @@ const Header = () => {
             <li>
               <Link to="/manage"> Manage </Link>
             </li>
+            <li>
+              <Link to="/snippet"> Snippet </Link>
+            </li>
           </ul>
         </nav>
       </div>
