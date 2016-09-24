@@ -8,7 +8,7 @@ import {
 export default function snippet(state = {}, action) {
   switch (action.type) {
     case ADDSNIPPET_REQUEST:
-        console.log("ADDSNIPPET_REQUEST")
+        console.log("ADDSNIPPET_REQUEST", 'piss off from the reducer')
         return Object.assign({}, state, {
             isFetching: true,
         })
@@ -16,13 +16,13 @@ export default function snippet(state = {}, action) {
       console.log("ADDSNIPPET_SUCCESS");
       return Object.assign({}, state, {
         isFetching: false,
-        newClass: action.payload,
+        newSnippet: action.payload,
       })
     case ADDSNIPPET_FAILURE:
       console.log("ADDSNIPPET_FAILURE");
       return Object.assign({}, state, {
         isFetching: false,
-        newClass: null,
+        newSnippet: null,
       })
     default:
       return state

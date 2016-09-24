@@ -2,6 +2,7 @@ import path from 'path';
 
 export default {
   module: {
+    devtool: 'inline-source-map',
     loaders: [{
       test: /\.jsx?$/,
       loaders: ['babel-loader'],
