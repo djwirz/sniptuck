@@ -34,6 +34,8 @@ db.once('open', function callback(){console.log('A flock of Mongeese are forming
 
 app.post('/dist/api/add/snippet', Controller.addSnippet);
 
+app.get('/dist/api/find/snippet', Controller.fetchSnippets);
+
 const server = app.listen(PORT, 'localhost', err => {
   if (err) {
     console.error(err);

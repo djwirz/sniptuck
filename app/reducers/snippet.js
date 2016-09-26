@@ -8,7 +8,7 @@ import {
 export default function snippet(state = {}, action) {
   switch (action.type) {
     case ADDSNIPPET_REQUEST:
-        console.log("ADDSNIPPET_REQUEST", 'piss off from the reducer')
+        console.log("ADDSNIPPET_REQUEST")
         return Object.assign({}, state, {
             isFetching: true,
         })

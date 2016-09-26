@@ -26,7 +26,6 @@ class Snippet extends Component {
     //why use react if we are going to render after the request
     event.preventDefault();
     // addSnippet -> POST request to the api(actions/addSnippet.js)
-    console.log('Line 29 in components/Snippet.js, this.state: ', this.state)
     this.props.addSnippet(this.state);
     //Reset entry
     this.setState({

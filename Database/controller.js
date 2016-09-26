@@ -15,5 +15,15 @@ module.exports = {
       }
       res.json(newSnippet);
     });
+  },
+
+  fetchSnippets: function(req, res) {
+    Snippet.find({}, function(err, snippets) {
+      const snippetMap = [];
+      snippets.forEach(function(snippet) {
+        snippetMap.push(snippet.snippet);
+      });
+      res.send(snippetMap);
+    });
   }
 }
