@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Search from '../components/Search';
+import ShowSnippets from '../components/ShowSnippets';
 
 export default class SearchPage extends Component {
   render() {
     return (
-      <Search />
+      <ShowSnippets />
     );
   }
 }

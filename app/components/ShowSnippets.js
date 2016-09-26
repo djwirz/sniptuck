@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { fetchSnippets, fetchSnippetsSuccess, fetchSnippetsFailure } from '../actions/fetchSnippets';
 
-export default class Search extends Component {
+export default class ShowSnippets extends Component {
 
   componentWillMount() {
     fetchSnippets()
@@ -11,7 +11,7 @@ export default class Search extends Component {
   render() {
     return (
       <div>
-        <h2>Search</h2>
+        <h2>ShowSnippets</h2>
       </div>
     );
   }

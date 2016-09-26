@@ -12,7 +12,7 @@ function fetchSnippetsSuccess() {
 
 // Called upon successfull api request, info sent to reducers.
 // Reducer waiting for this action type is in reducers/classes_reducer.js
-function fetchSnippetsRequest(snippets) {
+export function fetchSnippetsRequest(snippets) {
   return {
     type: types.SNIPPETS_FETCH_REQUEST,
     isFetching: false,
@@ -22,7 +22,7 @@ function fetchSnippetsRequest(snippets) {
 
 // Called if error signing in, info sent to reducers.
 // Reducer waiting for this action type is in reducers/classes_reducer.js
-function fetchSnippetsFailure(message) {
+export function fetchSnippetsFailure(message) {
   return {
     type: types.SNIPPETS_FETCH_FAILURE,
     isFetching: false,
@@ -31,14 +31,14 @@ function fetchSnippetsFailure(message) {
 };
 
 export function fetchSnippets() {
-  return function() {
-    requestFetchSnippets();
-      axios.get('http://localhost:8080/dist/api/find/snippet')
-        .then(function(response){
-          return fetchedSnippet(response.data);
-        })
-        .catch(function(response){
-          return snippetFetchError(response);
-        });
+  const request = axios({
+    method: 'get',
+    url: `http://localhost:8080/dist/api/find/snippet`,
+    headers: []
+  });
+
+  return {
+    type: types.SNIPPETS_FETCH_REQUEST,
+    payload: request
   };
-};
+}
