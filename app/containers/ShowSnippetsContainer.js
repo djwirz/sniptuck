@@ -1,22 +1,19 @@
-
 import { connect } from 'react-redux'
-import { fetchSnippets, fetchSnippetsSuccess, fetchSnippetsFailure } from '../actions/fetchSnippets';
 
+import { fetchSnippets, fetchSnippetsFailure, fetchSnippetsSuccess } from '../actions/fetchSnippets';
 import ShowSnippets from '../components/ShowSnippets';
 
 
 const mapStateToProps = (state) => {
   return {
-    snippetsList: state.snippet.snippetsList
+    snippetsList: state.snippetsList
   };
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchSnippets: () => {
-      dispatch(fetchSnippets()).then((response) => {
-            !response.error ? dispatch(fetchPostsSuccess(response.payload)) : dispatch(fetchPostsFailure(response.payload));
-          });
+      dispatch(fetchSnippets())
     }
   }
 }
@@ -25,3 +22,8 @@ const mapDispatchToProps = (dispatch) => {
 const ShowSnippetsContainer = connect(mapStateToProps, mapDispatchToProps)(ShowSnippets)
 
 export default ShowSnippetsContainer
+
+
+// dispatch(fetchSnippets()).then((response) => {
+//   !response.error ? dispatch(fetchSnippetsSuccess(response.payload)) : dispatch(fetchSnippetsFailure(response.payload));
+// });
