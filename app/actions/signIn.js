@@ -3,7 +3,7 @@ import axios from 'axios';
 import * as types from '../constants/ActionTypes';
 import secrets from '../../config';
 
-function requestSignIn(snippetInfo) {
+const requestSignIn = snippetInfo => {
   return {
     type: types.SIGNIN_REQUEST,
     isFetching: true,
@@ -11,7 +11,7 @@ function requestSignIn(snippetInfo) {
   };
 }
 
-function signInSuccess(newSnippet) {
+const signInSuccess = newSnippet => {
   return {
     type: types.SIGNIN_SUCCESS,
     isFetching: false,
@@ -19,7 +19,7 @@ function signInSuccess(newSnippet) {
   };
 }
 
-function signInFailure(message) {
+const signInFailure = message => {
   return {
     type: types.SIGNIN_FAILURE,
     isFetching: false,
@@ -27,7 +27,7 @@ function signInFailure(message) {
   };
 }
 
-export function signInUser(code) {
+export const signInUser = code => {
   return (dispatch, getState) => {
     dispatch(requestSignIn(code));
     return axios.post('https://github.com/login/oauth/access_token', {
@@ -35,17 +35,22 @@ export function signInUser(code) {
       'client_secret': secrets.client_secret,
       'code': code
     })
-    .then(function(response){
+    .then( response => {
       //gotta manage that state, statelessness is next to godliness
       dispatch(signInSuccess(response.data));
       //choose where to redirect after adding that snippet yo
       //browserHistory.push('/');
     })
-    .catch(function(response){
+    .catch( response => {
       dispatch(signInFailure(response));
       //console.log('response: ', response)
       //potentially a snippet add failure page
     });
 
   };
+};
+
+export const SIGNOUT = 'SIGNOUT';
+export const signout = () => {
+  return { type: SIGNOUT };
 };

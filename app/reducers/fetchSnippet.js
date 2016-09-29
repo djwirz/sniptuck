@@ -1,8 +1,8 @@
 import {
   SNIPPETS_FETCH_SUCCESS, SNIPPETS_FETCH_REQUEST, SNIPPETS_FETCH_FAILURE
-} from '../actions/addSnippet'
+} from '../actions/fetchSnippets'
 
-export default function snippet(state = {}, action) {
+export default function fetchSnippets(state = {}, action) {
   switch (action.type) {
     case SNIPPETS_FETCH_REQUEST:
         console.log("SNIPPETS_FETCH_REQUEST")

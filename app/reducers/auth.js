@@ -1,5 +1,5 @@
 import {
-  SIGNIN_SUCCESS, SIGNIN_REQUEST, SIGNIN_FAILURE
+  SIGNIN_SUCCESS, SIGNIN_REQUEST, SIGNIN_FAILURE, SIGNOUT
 } from '../actions/signIn'
 
 const initialState = {
@@ -32,6 +32,12 @@ export default function reducer(state = initialState, action) {
         failed: true,
         response: action.payload
       };
+    case SIGNOUT:
+      return {
+        ...state,
+        response: null,
+        token: null
+  };
     default:
       return state;
   }

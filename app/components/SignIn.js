@@ -6,7 +6,7 @@ var BrowserWindow = remote.BrowserWindow;
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { signInUser } from '../actions/signIn';
+import { signInUser, signout } from '../actions/signIn';
 import secrets from '../../config';
 
 export class SignIn extends React.Component {
@@ -16,6 +16,11 @@ export class SignIn extends React.Component {
       ipcRenderer.send('reopen-window');
     }
   }
+
+  logout() {
+    this.props.logout();
+    this.context.router.replace('/login');
+}
 
   authGithub () {
     var self = this;
@@ -74,12 +79,15 @@ export class SignIn extends React.Component {
     return (
       <div>
         <button onClick={this.authGithub.bind(this)}>
-          Log in to GitHub
+          Sign in to GitHub
         </button>
       </div>
     );
   }
 };
+// <button onClick={this.signout.bind(this)}>
+// Sign out of GitHub
+// </button>
 
 SignIn.contextTypes = {
   router: React.PropTypes.object.isRequired
@@ -94,4 +102,4 @@ function mapStateToProps(state) {
   };
 };
 
-export default connect(mapStateToProps, { signInUser })(SignIn);
+export default connect(mapStateToProps, { signInUser, signout })(SignIn);
