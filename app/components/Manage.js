@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Manage extends Component {
+class Manage extends Component {
   render() {
     return (
       <div>
@@ -9,3 +9,5 @@ export default class Manage extends Component {
     );
   }
 }
+
+export default Manage;

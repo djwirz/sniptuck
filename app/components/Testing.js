@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Testing extends Component {
+class Testing extends Component {
   render() {
     return (
       <div>
@@ -9,3 +9,5 @@ export default class Testing extends Component {
     );
   }
 }
+
+export default Testing;

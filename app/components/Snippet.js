@@ -15,19 +15,12 @@ class Snippet extends Component {
   }
 
   onSnippetAdd(event){
-    //As user types in snippet input, update the state
-    //Once state updates the input value is updated to match the state
     this.setState({ snippet: event.target.value })
   }
 
   onFormSubmit(event){
-    //Need to preventDefault
-    //default is sending an http request
-    //why use react if we are going to render after the request
     event.preventDefault();
-    // addSnippet -> POST request to the api(actions/addSnippet.js)
     this.props.addSnippet(this.state);
-    //Reset entry
     this.setState({
         snippet: '',
     });

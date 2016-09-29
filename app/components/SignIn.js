@@ -3,13 +3,13 @@ var ipcRenderer = window.require('electron').ipcRenderer;
 var remote = electron.remote;
 var BrowserWindow = remote.BrowserWindow;
 
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { signInUser, signout } from '../actions/signIn';
 import secrets from '../../config';
 
-export class SignIn extends React.Component {
+export class SignIn extends Component {
   componentWillReceiveProps(nextProps) {
     const isLoggedIn = nextProps.token !== null;
     if (isLoggedIn) {
@@ -38,7 +38,7 @@ export class SignIn extends React.Component {
     var authUrl = githubUrl + 'client_id=' + secrets.client_id + '&scope=' + ['user:email', 'notifications'];
     authWindow.loadURL(authUrl);
 
-    function handleCallback (url) {
+    const handleCallback = url => {
       var raw_code = /code=([^&]*)/.exec(url) || null;
       var code = (raw_code && raw_code.length > 1) ? raw_code[1] : null;
       var error = /\?error=(.+)$/.exec(url);
@@ -58,15 +58,15 @@ export class SignIn extends React.Component {
     }
 
     // If "Done" button is pressed, hide "Loading"
-    authWindow.on('close', function () {
+    authWindow.on('close', () => {
       authWindow.destroy();
     });
 
-    authWindow.webContents.on('will-navigate', function (event, url) {
+    authWindow.webContents.on('will-navigate', (event, url) => {
       handleCallback(url);
     });
 
-    authWindow.webContents.on('did-get-redirect-request', function (event, oldUrl, newUrl) {
+    authWindow.webContents.on('did-get-redirect-request', (event, oldUrl, newUrl) => {
       handleCallback(newUrl);
     });
   }
@@ -90,10 +90,10 @@ export class SignIn extends React.Component {
 // </button>
 
 SignIn.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     token: state.auth.token,
     response: state.auth.response,

@@ -1,9 +1,8 @@
 import React from 'react';
 import { Component } from 'react';
 
-export default class App extends Component {
+class App extends Component {
 	componentWillMount() {
-    //this.props.something about authentiation
   }
 
   render() {
@@ -14,3 +13,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default App;
