@@ -5,15 +5,28 @@ import HomePage from './pages/HomePage';
 import SearchPage from './pages/SearchPage';
 import TestingPage from './pages/TestingPage';
 import ManagePage from './pages/ManagePage';
-import SnippetPage from './pages/SnippetPage'
+import SnippetPage from './pages/SnippetPage';
+import SignIn from './components/SignIn';
 
-export default (
+function requireAuth (store, b, c) {
+  const isSignedIn = store.getState().auth.token !== null;
+
+  if (!isSignedIn) {
+    return (nextState, replace) => {
+      replace('/signin/');
+    };
+  }
+}
+
+export default (store) => {
+  return (
   <Route path="/" component={App}>
-    <IndexRoute component={HomePage} />
+    <IndexRoute component={HomePage} onEnter={requireAuth(store)} />
     <Route path="/home" component={HomePage} />
     <Route path="/search" component={SearchPage} />
     <Route path="/testing" component={TestingPage} />
     <Route path="/manage" component={ManagePage} />
     <Route path="/snippet" component={SnippetPage} />
+    <Route path="/signin" component={SignIn} />
   </Route>
-);
+)};
