@@ -5,7 +5,7 @@ import {
   ADDSNIPPET_SUCCESS, ADDSNIPPET_REQUEST, ADDSNIPPET_FAILURE
 } from '../actions/addSnippet'
 
-export default function snippet(state = {}, action) {
+const snippet = (state = {}, action) => {
   switch (action.type) {
     case ADDSNIPPET_REQUEST:
         console.log("ADDSNIPPET_REQUEST")
@@ -28,3 +28,5 @@ export default function snippet(state = {}, action) {
       return state
   }
 };
+
+export default snippet;

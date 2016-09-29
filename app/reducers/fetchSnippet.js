@@ -2,7 +2,7 @@ import {
   SNIPPETS_FETCH_SUCCESS, SNIPPETS_FETCH_REQUEST, SNIPPETS_FETCH_FAILURE
 } from '../actions/fetchSnippets'
 
-export default function fetchSnippets(state = {}, action) {
+const fetchSnippets = (state = {}, action) => {
   switch (action.type) {
     case SNIPPETS_FETCH_REQUEST:
         console.log("SNIPPETS_FETCH_REQUEST")
@@ -25,3 +25,5 @@ export default function fetchSnippets(state = {}, action) {
       return state
   }
 };
+
+export default fetchSnippets;

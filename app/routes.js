@@ -8,7 +8,7 @@ import ManagePage from './pages/ManagePage';
 import SnippetPage from './pages/SnippetPage';
 import SignIn from './components/SignIn';
 
-function requireAuth (store, b, c) {
+const requireAuth = (store, b, c) => {
   const isSignedIn = store.getState().auth.token !== null;
 
   if (!isSignedIn) {

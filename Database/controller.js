@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const Snippet = require('./Models/snippet.js');
 
 module.exports = {
-  addSnippet: function(req, res) {
+  addSnippet: (req, res) => {
     const newSnippet = new Snippet({
       snippet: req.body.snippet
     });
-    newSnippet.save(function (err) {
+    newSnippet.save( err => {
       if (err) {
         return console.log(err);
       }
@@ -16,10 +16,10 @@ module.exports = {
     });
   },
 
-  fetchSnippets: function(req, res) {
-    Snippet.find({}, function(err, snippets) {
+  fetchSnippets: const(req, res) {
+    Snippet.find({}, const(err, snippets) {
       const snippetMap = [];
-      snippets.forEach(function(snippet) {
+      snippets.forEach(const(snippet) {
         snippetMap.push(snippet.snippet);
       });
       res.send(snippetMap);
