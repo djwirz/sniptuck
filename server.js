@@ -30,7 +30,7 @@ mongoose.connect('mongodb://localhost/sniptuck');
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'No Mongo for you'));
-db.once('open', function callback(){console.log('A flock of Mongeese are forming the flying V');  });
+db.once('open', () => {console.log('A flock of Mongeese are forming the flying V');  });
 
 app.post('/dist/api/add/snippet', Controller.addSnippet);
 

@@ -16,12 +16,10 @@ module.exports = {
     });
   },
 
-  fetchSnippets: const(req, res) {
-    Snippet.find({}, const(err, snippets) {
+  fetchSnippets: (req, res) => {
+    Snippet.find({}, (err, snippets) => {
       const snippetMap = [];
-      snippets.forEach(const(snippet) {
-        snippetMap.push(snippet.snippet);
-      });
+      snippets.forEach(snippet => { snippetMap.push(snippet.snippet);});
       res.send(snippetMap);
     });
   }

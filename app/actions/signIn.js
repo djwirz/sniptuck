@@ -3,19 +3,19 @@ import axios from 'axios';
 import * as types from '../constants/ActionTypes';
 import secrets from '../../config';
 
-const requestSignIn = snippetInfo => {
+const requestSignIn = code => {
   return {
     type: types.SIGNIN_REQUEST,
     isFetching: true,
-    payload: snippetInfo
+    payload: code
   };
 }
 
-const signInSuccess = newSnippet => {
+const signInSuccess = code => {
   return {
     type: types.SIGNIN_SUCCESS,
     isFetching: false,
-    payload: newSnippet
+    payload: code
   };
 }
 
@@ -36,15 +36,10 @@ export const signInUser = code => {
       'code': code
     })
     .then( response => {
-      //gotta manage that state, statelessness is next to godliness
       dispatch(signInSuccess(response.data));
-      //choose where to redirect after adding that snippet yo
-      //browserHistory.push('/');
     })
     .catch( response => {
       dispatch(signInFailure(response));
-      //console.log('response: ', response)
-      //potentially a snippet add failure page
     });
 
   };
