@@ -9,7 +9,7 @@ const initialState = {
   failed: false
 };
 
-const reducer = (state = initialState, action) => {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SIGNIN_REQUEST:
       return {
@@ -42,5 +42,3 @@ const reducer = (state = initialState, action) => {
       return state;
   }
 };
-
-export default reducer;

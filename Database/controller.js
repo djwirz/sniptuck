@@ -6,7 +6,11 @@ const Snippet = require('./Models/snippet.js');
 module.exports = {
   addSnippet: (req, res) => {
     const newSnippet = new Snippet({
-      snippet: req.body.snippet
+      title: req.body.title,
+      description: req.body.description,
+      tags: req.body.tags,
+      snippet: req.body.snippet,
+      user_id:'',
     });
     newSnippet.save( err => {
       if (err) {

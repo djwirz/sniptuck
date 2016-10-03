@@ -31,7 +31,12 @@ const snippetAddError = message => {
 export const addSnippet = snippetInfo => {
   return dispatch => {
     dispatch(requestaddSnippet(snippetInfo));
-  axios.post('http://localhost:8080/dist/api/add/snippet', { "snippet": snippetInfo.snippet })
+  axios.post('http://localhost:8080/dist/api/add/snippet', {
+    "title": snippetInfo.title,
+    "description": snippetInfo.description,
+    "tags": snippetInfo.tags,
+    "snippet": snippetInfo.snippet
+  })
       .then( response => {
         //gotta manage that state, statelessness is next to godliness
         dispatch(addedSnippet(response.data));

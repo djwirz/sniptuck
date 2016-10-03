@@ -10,11 +10,31 @@ class Snippet extends Component {
     super(props);
 
     this.state = {
-        snippet: '',
+      title: '',
+      description: '',
+      tags: '',
+      snippet: '',
+      user_id:''
     };
   }
 
+  onTitleAdd(event){
+    this.setState({ title: event.target.value })
+  }
+
+  onDescriptionAdd(event){
+    this.setState({ description: event.target.value })
+  }
+
+  onTagsAdd(event){
+    this.setState({ tags: event.target.value })
+  }
+
   onSnippetAdd(event){
+    this.setState({ snippet: event.target.value })
+  }
+
+  onUserAdd(event){
     this.setState({ snippet: event.target.value })
   }
 
@@ -22,7 +42,10 @@ class Snippet extends Component {
     event.preventDefault();
     this.props.addSnippet(this.state);
     this.setState({
-        snippet: '',
+        title: '',
+        description: '',
+        tags: '',
+        snippet: ''
     });
   }
 
@@ -30,6 +53,27 @@ class Snippet extends Component {
     return (
       <div>
         <form  onSubmit={this.onFormSubmit.bind(this)}>
+          <input
+              type="text"
+              placeholder="Name......."
+              value={this.state.title}
+              onChange={this.onTitleAdd.bind(this)}
+              />
+          <input
+              type="text"
+              placeholder="Description......."
+              value={this.state.description}
+              onChange={this.onDescriptionAdd.bind(this)}
+              />
+          <select
+              placeholder="Tags......."
+              value={this.state.tags}
+              onChange={this.onTagsAdd.bind(this)}
+              >
+              <option value="JavaScript">JavaScript</option>
+              <option value="Angular">Angular</option>
+              <option value="React">React</option>
+          </select>
           <input
               type="text"
               placeholder="Snippet......."
