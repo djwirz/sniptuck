@@ -4,7 +4,9 @@ import Testing from '../components/Testing';
 class TestingPage extends Component {
   render() {
     return (
-      <Testing />
+      <div>
+        <Testing />
+      </div>
     );
   }
 }
