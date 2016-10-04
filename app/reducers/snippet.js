@@ -14,7 +14,7 @@ const snippet = (state = {}, action) => {
           isFetching: true,
         }
     case ADDSNIPPET_SUCCESS:
-      console.log("ADDSNIPPET_SUCCESS");
+      console.log("ADDSNIPPET_SUCCESSSSS");
       return {
         ...state,
         isFetching: false,

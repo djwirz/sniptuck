@@ -6,6 +6,8 @@ import { addSnippet } from '../actions/addSnippet';
 
 import { MultiSelect, SimpleSelect } from 'react-selectize'
 
+import Form from './Autocomplete';
+
 class Snippet extends Component {
 
   constructor(props) {
@@ -67,16 +69,7 @@ class Snippet extends Component {
               value={this.state.description}
               onChange={this.onDescriptionAdd.bind(this)}
               />
-              <MultiSelect
-                createFromSearch = {function(options, values, search){
-                  let labels = values.map(function(value){
-                    return value.label;
-                  })
-                  if (search.trim().length == 0 || labels.indexOf(search.trim()) != -1)
-                    return null;
-                  return {label: search.trim(), value: search.trim()};
-                }}
-                />
+          <Form />
           <input
               type="text"
               placeholder="Snippet......."
