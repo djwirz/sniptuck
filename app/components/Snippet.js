@@ -69,7 +69,10 @@ class Snippet extends Component {
               value={this.state.description}
               onChange={this.onDescriptionAdd.bind(this)}
               />
-          <Form />
+          <Form
+            // value={this.state.tags}
+            // onValuesChange = {tags => {self.setState({tags: tags})}}
+          />
           <input
               type="text"
               placeholder="Snippet......."
