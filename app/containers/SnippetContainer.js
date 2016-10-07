@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Snippet from '../components/Snippet';
-import * as SnippetActions from '../actions/addSnippet';
+import * as SnippetActions from '../actions/addSnippet2';
 
 const mapStateToProps = state => {
   return {

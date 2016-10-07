@@ -1,6 +1,4 @@
-import {
-  SIGNIN_SUCCESS, SIGNIN_REQUEST, SIGNIN_FAILURE, SIGNOUT
-} from '../actions/signIn'
+import { LOGIN, LOGOUT } from '../actions/auth2';
 
 const initialState = {
   response: {},
@@ -11,7 +9,7 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case SIGNIN_REQUEST:
+    case LOGIN.REQUEST:
       return {
         ...state,
         isFetching: true,
@@ -19,25 +17,25 @@ export default function reducer(state = initialState, action) {
         response: {},
         token: null
       };
-    case SIGNIN_SUCCESS:
+    case LOGIN.SUCCESS:
       return {
         ...state,
         isFetching: false,
         token: action.payload.access_token
       };
-    case SIGNIN_FAILURE:
+    case LOGIN.FAILURE:
       return {
         ...state,
         isFetching: false,
         failed: true,
         response: action.payload
       };
-    case SIGNOUT:
+    case LOGOUT:
       return {
         ...state,
         response: null,
         token: null
-  };
+      };
     default:
       return state;
   }

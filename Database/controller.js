@@ -23,7 +23,7 @@ module.exports = {
   fetchSnippets: (req, res) => {
     Snippet.find({}, (err, snippets) => {
       const snippetMap = [];
-      snippets.forEach(snippet => { snippetMap.push(snippet.snippet);});
+      snippets.forEach(snippet => { snippetMap.push(snippet);});
       res.send(snippetMap);
     });
   }

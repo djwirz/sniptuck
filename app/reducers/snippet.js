@@ -3,7 +3,7 @@
 //Action Types
 import {
   ADDSNIPPET_SUCCESS, ADDSNIPPET_REQUEST, ADDSNIPPET_FAILURE
-} from '../actions/addSnippet'
+} from '../actions/addSnippet2'
 
 const snippet = (state = {}, action) => {
   switch (action.type) {

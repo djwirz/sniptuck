@@ -1,29 +1,39 @@
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { fetchSnippets } from '../actions/fetchSnippet2'
+import Snippets from '../components/ShowSnippets'
 
-import { fetchSnippets, fetchSnippetsFailure, fetchSnippetsSuccess } from '../actions/fetchSnippets';
-import ShowSnippets from '../components/ShowSnippets';
+class ShowSnippets extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  componentWillMount() {
+    console.log('line 42: ',this.props)
+    this.props.dispatch(fetchSnippets())
+  }
 
 
-const mapStateToProps = (state) => {
-  return {
-    snippetsList: state.snippetsList
-  };
-}
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchSnippets: () => {
-      dispatch(fetchSnippets())
-    }
+  render() {
+    const { snippets } = this.props
+    return (
+      <div>
+        <Snippets snippets={snippets} />
+      </div>
+    )
   }
 }
 
+ShowSnippets.propTypes = {
+  snippets: PropTypes.array.isRequired,
+}
 
-const ShowSnippetsContainer = connect(mapStateToProps, mapDispatchToProps)(ShowSnippets)
+const mapStateToProps = (state) => {
+  return {
+    snippets: state.snippets
+  };
+}
 
-export default ShowSnippetsContainer
 
-
-// dispatch(fetchSnippets()).then((response) => {
-//   !response.error ? dispatch(fetchSnippetsSuccess(response.payload)) : dispatch(fetchSnippetsFailure(response.payload));
-// });
+export default connect(mapStateToProps)(ShowSnippets)

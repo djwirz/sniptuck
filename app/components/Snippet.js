@@ -2,11 +2,19 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addSnippet } from '../actions/addSnippet';
+import { addSnippet } from '../actions/addSnippet2';
 
 import { MultiSelect, SimpleSelect } from 'react-selectize'
 
 import Form from './Autocomplete';
+
+import brace from 'brace';
+import AceEditor from 'react-ace';
+
+import 'brace/mode/javascript';
+import 'brace/theme/chaos';
+
+const tagsList = require('../constants/tags')
 
 class Snippet extends Component {
 
@@ -17,7 +25,7 @@ class Snippet extends Component {
       title: '',
       description: '',
       tags: '',
-      snippet: '',
+      snippet: 'start state',
       user_id:''
     };
   }
@@ -30,16 +38,15 @@ class Snippet extends Component {
     this.setState({ description: event.target.value })
   }
 
-  onTagsAdd(event){
-    this.setState({ tags: event.target.value })
+  options = tagsList.tags.map(tag => {return {label: tag, value: tag}})
+
+  onTagsAdd(values){
+    let tag = values.forEach( value => value.value.value)
+    this.setState({ tags: values })
   }
 
   onSnippetAdd(event){
-    this.setState({ snippet: event.target.value })
-  }
-
-  onUserAdd(event){
-    this.setState({ snippet: event.target.value })
+    this.setState({ snippet: event })
   }
 
   onFormSubmit(event){
@@ -56,30 +63,43 @@ class Snippet extends Component {
   render() {
     return (
       <div>
-        <form  onSubmit={this.onFormSubmit.bind(this)}>
-          <input
+      <form  onSubmit={this.onFormSubmit.bind(this)}>
+      <aside>
+        <ul>
+          <li><input
               type="text"
               placeholder="Name......."
               value={this.state.title}
               onChange={this.onTitleAdd.bind(this)}
-              />
-          <input
+              /></li>
+          <li><input
               type="text"
               placeholder="Description......."
               value={this.state.description}
               onChange={this.onDescriptionAdd.bind(this)}
-              />
-          <Form
-            // value={this.state.tags}
-            // onValuesChange = {tags => {self.setState({tags: tags})}}
-          />
-          <input
-              type="text"
-              placeholder="Snippet......."
-              value={this.state.snippet}
-              onChange={this.onSnippetAdd.bind(this)}
-              />
-            <button type="submit" >Save Snippet</button>
+              /></li>
+          <li><MultiSelect
+            options = {this.options}
+            placeholder = "Select Tags"
+            onValuesChange = {this.onTagsAdd.bind(this)}>
+            </MultiSelect>
+          </li>
+          <li><button type="submit" >Save Snippet</button></li>
+        </ul>
+        </aside>
+        <article>
+        <AceEditor
+          mode="javascript"
+          theme="chaos"
+          name="UNIQUE_ID_OF_DIV"
+          editorProps={{$blockScrolling: true}}
+          tabSize= {2}
+          fontSize= {16}
+          showGutter= {true}
+          value={'//Type your Snippet here to begin the SnipTuck process'}
+          onChange={this.onSnippetAdd.bind(this)}
+        />
+        </article>
         </form>
       </div>
     );

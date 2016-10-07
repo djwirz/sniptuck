@@ -32,9 +32,9 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'No Mongo for you'));
 db.once('open', () => {console.log('A flock of Mongeese are forming the flying V');  });
 
-app.post('/dist/api/add/snippet', Controller.addSnippet);
+app.post('/dist/api/snippet', Controller.addSnippet);
 
-app.get('/dist/api/find/snippet', Controller.fetchSnippets);
+app.get('/dist/api/snippet', Controller.fetchSnippets);
 
 const server = app.listen(PORT, 'localhost', err => {
   if (err) {

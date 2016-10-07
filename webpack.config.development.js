@@ -8,6 +8,7 @@ const port = process.env.PORT || 8080;
 export default merge(baseConfig, {
   debug: true,
 
+  devtool: 'inline-source-map',
   devtool: 'cheap-module-eval-source-map',
 
   entry: [
