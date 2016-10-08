@@ -15,7 +15,7 @@ export const ADDSNIPPET = makeAsyncActionSet('ADDSNIPPET');
 export function addSnippet(snippet) {
   return (dispatch, getState) => {
 
-    const url = 'http://localhost:8080/dist/api/snippet';
+    const url = 'http://localhost:3000/dist/api/snippet';
     const method = 'POST';
     const data = {
       "title": snippet.title,

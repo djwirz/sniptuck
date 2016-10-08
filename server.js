@@ -24,17 +24,21 @@ app.use(bodyParser.json());
 
 app.use(webpackHotMiddleware(compiler));
 
-const Controller = require('./Database/controller.js');
-const mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost/sniptuck');
-
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'No Mongo for you'));
-db.once('open', () => {console.log('A flock of Mongeese are forming the flying V');  });
-
-app.post('/dist/api/snippet', Controller.addSnippet);
-
-app.get('/dist/api/snippet', Controller.fetchSnippets);
+// const Controller = require('./Database/controller.js');
+// const mongoose = require("mongoose");
+// mongoose.connect('mongodb://localhost/sniptuck');
+//
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'No Mongo for you'));
+// db.once('open', () => {console.log('A flock of Mongeese are forming the flying V');  });
+//
+// app.post('/dist/api/snippet', Controller.addSnippet);
+//
+// app.get('/dist/api/snippet', Controller.fetchSnippets);
+//
+// app.put('/dist/api/snippet', Controller.updateSnippet);
+//
+// app.delete('/dist/api/snippet', Controller.deleteSnippet);
 
 const server = app.listen(PORT, 'localhost', err => {
   if (err) {
