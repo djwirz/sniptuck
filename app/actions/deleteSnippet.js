@@ -11,27 +11,24 @@ export function makeAsyncActionSet(actionName) {
 }
 
 
-export const ADDSNIPPET = makeAsyncActionSet('ADDSNIPPET');
-export function addSnippet(snippet) {
+export const DELETESNIPPET = makeAsyncActionSet('DELETESNIPPET');
+export function deleteSnippet(id) {
   return (dispatch, getState) => {
 
     const url = 'http://localhost:8080/snippet';
-    const method = 'POST';
+    const method = 'DELETE';
     const data = {
-      "title": snippet.title,
-      "description": snippet.description,
-      "tags": snippet.tags,
-      "snippet": snippet.snippet
+      "_id": id,
     };
 
-    dispatch({type: ADDSNIPPET.REQUEST});
+    dispatch({type: DELETESNIPPET.REQUEST});
 
     return apiRequest(url, method, data)
       .then(function (response) {
-        dispatch({type: ADDSNIPPET.SUCCESS, payload: response.data});
+        dispatch({type: DELETESNIPPET.SUCCESS, payload: response.data});
       })
       .catch(function (error) {
-        dispatch({type: ADDSNIPPET.FAILURE, payload: error.response.data});
+        dispatch({type: DELETESNIPPET.FAILURE, payload: error.response.data});
       });
 
   };

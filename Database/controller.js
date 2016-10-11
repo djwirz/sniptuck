@@ -5,7 +5,6 @@ const Snippet = require('./Models/snippet.js');
 
 module.exports = {
   addSnippet: (req, res) => {
-    console.log('-------------------------------------------------------------------------------------------------------------- controller line 8: ', req)
     const newSnippet = new Snippet({
       title: req.body.title,
       description: req.body.description,
@@ -29,9 +28,18 @@ module.exports = {
     });
   },
 
+  fetchSnippet: (req, res) => {
+    Snippet.findById(req.body._id, (err, id) => {
+      //console.log('controller line 35: ', id)
+      if( !id ) return res.json({ message: 'unable to fetch something that does not exist' });
+      if (err) res.send(err);
+      res.send(id);
+    });
+  },
+
   updateSnippet: (req, res) => {
     Snippet.findById(req.body._id, (err, snippet) => {
-      console.log('line 33 in controller: ', snippet);
+      //console.log('line 33 in controller: ', snippet);
       if( !snippet ) return res.json({ message: 'unable to update something that does not exist' });
       if (err) res.send(err);
       (req.body.title) ? snippet.title = req.body.title : null;

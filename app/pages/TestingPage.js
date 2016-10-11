@@ -8,7 +8,7 @@ class TestingPage extends Component {
     return (
       <div>
         <Header />
-        <LoginPage />
+        <Testing />
       </div>
     );
   }

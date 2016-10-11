@@ -41,12 +41,15 @@ class Snippet extends Component {
   options = tagsList.tags.map(tag => {return {label: tag, value: tag}})
 
   onTagsAdd(values){
-    let tag = values.forEach( value => value.value.value)
-    this.setState({ tags: values })
+    let tagsArr = [];
+    for(let tag in values){
+      tagsArr.push(values[tag].value)
+    }
+    this.setState({ tags: tagsArr })
   }
 
   onSnippetAdd(event){
-    this.setState({ snippet: event })
+    this.setState({ snippet: event.target.value })
   }
 
   onFormSubmit(event){

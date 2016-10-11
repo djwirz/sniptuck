@@ -27,6 +27,7 @@ export default (store) => {
     <Route path="/home" component={HomePage} />
     <Route path="/search" component={SearchPage} onEnter={requireAuth(store)}  />
     <Route path="/testing" component={TestingPage} onEnter={requireAuth(store)}  />
+      <Route path="/testing/:_id" component={TestingPage}/>
     <Route path="/manage" component={ManagePage} onEnter={requireAuth(store)}  />
     <Route path="/snippet" component={SnippetPage} onEnter={requireAuth(store)}  />
     <Route path="/login" component={LoginPage} />

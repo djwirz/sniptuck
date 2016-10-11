@@ -11,27 +11,28 @@ export function makeAsyncActionSet(actionName) {
 }
 
 
-export const ADDSNIPPET = makeAsyncActionSet('ADDSNIPPET');
-export function addSnippet(snippet) {
+export const UPDATESNIPPET = makeAsyncActionSet('UPDATESNIPPET');
+export function updateSnippet(snippet) {
   return (dispatch, getState) => {
 
     const url = 'http://localhost:8080/snippet';
-    const method = 'POST';
+    const method = 'PUT';
     const data = {
+      "_id": snippet._id,
       "title": snippet.title,
       "description": snippet.description,
       "tags": snippet.tags,
       "snippet": snippet.snippet
     };
 
-    dispatch({type: ADDSNIPPET.REQUEST});
+    dispatch({type: UPDATESNIPPET.REQUEST});
 
     return apiRequest(url, method, data)
       .then(function (response) {
-        dispatch({type: ADDSNIPPET.SUCCESS, payload: response.data});
+        dispatch({type: UPDATESNIPPET.SUCCESS, payload: response.data});
       })
       .catch(function (error) {
-        dispatch({type: ADDSNIPPET.FAILURE, payload: error.response.data});
+        dispatch({type: UPDATESNIPPET.FAILURE, payload: error.response.data});
       });
 
   };

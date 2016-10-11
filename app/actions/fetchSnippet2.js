@@ -15,7 +15,7 @@ export const FETCHSNIPPETS = makeAsyncActionSet('FETCHSNIPPETS');
 export function fetchSnippets() {
   return (dispatch, getState) => {
 
-    const url = 'http://localhost:3000/dist/api/snippet';
+    const url = 'http://localhost:8080/snippet';
     const method = 'GET';
 
     dispatch({type: FETCHSNIPPETS.REQUEST});
