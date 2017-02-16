@@ -1,0 +1,17 @@
+{
+  "users": {
+    "username": "TimmyTurner",
+    "password": "1234",
+    "Avatar": "image"
+  },
+  "snippet": {
+    "name": "Frequently reused bit of code",
+    "snippet": "aforementioned bit of code",
+    "developer": "ID of writer of aforementioned code",
+    "tags": ["IDs of tags used"],
+    "public": "Boolean of to share or not to share"
+  },
+  "tags": {
+    "tag": "The actual tag"
+  }
+}
