@@ -1,0 +1,42 @@
+{
+  "/api": {
+    "/user": {
+      "/": {
+        "GET": {
+          "description": "get all users",
+          "response": "200 application/json",
+          "data": "[{},{}]"
+        },
+        "POST": {
+          "description": "make and return new user",
+          "response": "201 application/json",
+          "data": "{}"
+        }
+      },
+      "/:id": {
+        "GET": {
+          "description": "returns data on one user",
+          "response": "200 application/json",
+          "data": "{}"
+        },
+        "PUT": {
+          "description": "updates and returns updated data on one user",
+          "response": "200 application/json",
+          "data": "{}"
+        },
+        "DELETE": {
+          "description": "deletes and returns deleted data on one user",
+          "response": "200 application/json",
+          "data": "{}"
+        }
+      },
+      "/me": {
+        "GET": {
+          "description": "returns current user",
+          "response": "200 application/json",
+          "data": "{}"
+        }
+      }
+    }
+  }
+}
