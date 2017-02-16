@@ -1,2 +1,2 @@
 # sniptuck
-A code snippet manager
+Old work backup. Opted to nuke and restart, but was feeling sentimental and kept this work as 'legacy'
