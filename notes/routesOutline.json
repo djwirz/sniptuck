@@ -15,7 +15,7 @@
       },
       "/:id": {
         "GET": {
-          "description": "returns data on one user",
+          "description": "returns posts by one user",
           "response": "200 application/json",
           "data": "{}"
         },
@@ -35,6 +35,58 @@
           "description": "returns current user",
           "response": "200 application/json",
           "data": "{}"
+        }
+      }
+    },
+    "/post": {
+      "/": {
+        "GET": {
+          "description": "get all posts",
+          "response": "200 application/json",
+          "data": "[{},{}]"
+        },
+        "POST": {
+          "description": "make and return new post",
+          "response": "201 application/json",
+          "data": "{}"
+        }
+      },
+      "/:id": {
+        "GET": {
+          "description": "returns data on one post",
+          "response": "200 application/json",
+          "data": "{}"
+        },
+        "PUT": {
+          "description": "updates and returns updated data on one post",
+          "response": "200 application/json",
+          "data": "{}"
+        },
+        "DELETE": {
+          "description": "deletes and returns deleted data on one post",
+          "response": "200 application/json",
+          "data": "{}"
+        }
+      },
+      "/tags": {
+        "/": {
+          "GET": {
+            "description": "get all tags",
+            "response": "200 application/json",
+            "data": "[{},{}]"
+          },
+          "POST": {
+            "description": "make and return new tag",
+            "response": "201 application/json",
+            "data": "{}"
+          }
+        },
+        "/:id": {
+          "GET": {
+            "description": "returns posts with tag",
+            "response": "200 application/json",
+            "data": "{}"
+          }
         }
       }
     }
