@@ -2,6 +2,22 @@ const router = require('express').Router()
 const Snippet = require('./snippetModel.js')
 const _ = require('lodash')
 
+router.params(function (req, res, next, id) {
+  Snippet.findById(id)
+    .populate('developer', 'tags')
+    .exec()
+    .then(function (snippet) {
+      if (!snippet) {
+        next(new Error('No snippet exists with given id'))
+      } else {
+        req.snippet = snippet
+        next()
+      }
+    }, function (err) {
+      next(err)
+    })
+})
+
 router.route('/')
   .get(function (req, res, next) {
     Snippet.find({})
@@ -15,12 +31,13 @@ router.route('/')
   })
   .post(function (req, res, next) {
     let newSnippet = new Snippet(req.body)
-    newSnippet.save(function (err, snippet) {
-      if (err) {
-        return next(err)
-      }
-      res.json({doAuth: 'here'})
-    })
+    newSnippet.developer = req.user._id
+    Snippet.create(newSnippet)
+      .then(function (snippet) {
+        res.json(snippet)
+      }, function (err) {
+        next(err)
+      })
   })
 
 router.route('/:id')

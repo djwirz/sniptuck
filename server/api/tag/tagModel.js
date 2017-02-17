@@ -8,3 +8,5 @@ const TagSchema = new Schema({
     unique: true
   }
 })
+
+module.exports = mongoose.model('tag', TagSchema)
