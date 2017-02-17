@@ -4,7 +4,7 @@
   "description": "reboot on original sniptuck",
   "main": "index.js",
   "scripts": {
-    "lint": "standard",
+    "lint": "standard --verbose | snazzy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,12 +19,23 @@
   "homepage": "https://github.com/djwirz/sniptuck#readme",
   "devDependencies": {
     "chai": "^3.5.0",
+    "morgan": "^1.8.1",
+    "snazzy": "^6.0.0",
     "standard": "^8.6.0",
     "supertest": "^3.0.0"
   },
   "dependencies": {
+    "body-parser": "^1.16.1",
+    "cors": "^2.8.1",
     "express": "^4.14.1",
     "lodash": "^4.17.4",
     "mongoose": "^4.8.3"
+  },
+  "standard": {
+    "ignore": [
+      "server/api/snippet/snippetModel.js",
+      "server/api/tag/tagModel.js",
+      "server/api/user/userModel.js"
+    ]
   }
 }

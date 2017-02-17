@@ -17,7 +17,7 @@ const SnippetSchema = new Schema({
   },
   tags: [{
     type: Schema.Types.ObjectId,
-    ref: tag
+    ref: 'tag'
   }],
   public: {
     type: Boolean,

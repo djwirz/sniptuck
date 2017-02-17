@@ -1,3 +1,4 @@
+/* eslint-env mocha */
 const app = require('../../server.js')
 const request = require('supertest')
 const expect = require('chai').expect
@@ -10,6 +11,9 @@ describe('tags', function () {
       .expect('Content-Type', /json/)
       .expect(200)
       .end(function (err, resp) {
+        if (err) {
+          throw new Error(err)
+        }
         expect(resp.body).to.be.an('array')
         done()
       })
@@ -25,6 +29,9 @@ describe('tags', function () {
       .expect('Content-Type', /json/)
       .expect(201)
       .end(function (err, resp) {
+        if (err) {
+          throw new Error(err)
+        }
         expect(resp.body).to.be.an('object')
         done()
       })
@@ -38,10 +45,16 @@ describe('tags', function () {
       })
       .set('Accept', 'application/json')
       .end(function (err, resp) {
+        if (err) {
+          throw new Error(err)
+        }
         let tag = resp.body
         request(app)
-          .get('/api/tags/' + tags.id)
+          .get('/api/tags/' + tag.id)
           .end(function (err, resp) {
+            if (err) {
+              throw new Error(err)
+            }
             expect(resp.body.tag).to.equal('testTagForID')
             done()
           })

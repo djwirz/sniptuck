@@ -39,3 +39,5 @@ router.route('/:id')
       let tag = req.tag
       res.json(tag)
     })
+
+module.exports = router
