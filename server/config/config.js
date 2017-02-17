@@ -1,10 +1,10 @@
 const _ = require('lodash')
 
 const config = {
-  developement,
-  testing,
-  production,
-  port: process.env.PORT || 3000,
+  developement: 'developement',
+  testing: 'testing',
+  production: 'production',
+  port: process.env.PORT || 3000
 }
 
 process.env.NODE_ENV = process.env.NODE_ENV || config.developement
